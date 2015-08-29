@@ -22,6 +22,12 @@ int loopNum;
 #include "TimeToCopyVector.h"
 
 int main(int argc, char* argv[]) {
+    if(argc != 3)
+    {
+        printf("%s <inner loops> <outer loops>\n", argv[0]);
+        exit(1);
+    }
+
     theBigNum = atoi(argv[1]);
     loopNum = atoi(argv[2]);
 
