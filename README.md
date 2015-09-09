@@ -1,3 +1,7 @@
+# Install dependencies:
+
+$ sudo dnf install python-pandas
+
 # vectorTest
 
 $ mkdir build
@@ -8,11 +12,9 @@ $ cmake ../
 
 $ make -j
 
-$ ./vectorTest
+# To generate images:
 
-$ sudo dnf install python-pandas
-
-$ python process.py
+$ make images
 
 Output:
 
