@@ -9,14 +9,19 @@ add_executable(vectorTest ${SOURCE_FILES})
 
 function(generate_data buffer_size loops)
     set(output_data_file data${buffer_size}.csv)
-    set(output_image_file data${buffer_size}.svg)
+    set(output_image_file_svg data${buffer_size}.svg)
+    set(output_image_file_png data${buffer_size}.png)
 
     add_custom_command(OUTPUT ${output_data_file}
         COMMAND vectorTest ${buffer_size} ${loops} > ${output_data_file}
         DEPENDS vectorTest)
 
-    add_custom_command(OUTPUT ${output_image_file}
-        COMMAND python ./process.py ${output_data_file} save ${output_image_file}
+    add_custom_command(OUTPUT ${output_image_file_svg}
+        COMMAND python ./process.py ${output_data_file} save ${output_image_file_svg}
+        DEPENDS ${output_data_file})
+
+    add_custom_command(OUTPUT ${output_image_file_png}
+        COMMAND python ./process.py ${output_data_file} save ${output_image_file_png}
         DEPENDS ${output_data_file})
 endfunction(generate_data)
 
@@ -60,4 +65,16 @@ add_custom_target(images
         data32768.svg
         data65535.svg
         data1048576.svg
+
+        data64.png
+        data128.png
+        data256.png
+        data1024.png
+        data2048.png
+        data4096.png
+        data8192.png
+        data16384.png
+        data32768.png
+        data65535.png
+        data1048576.png
 )
